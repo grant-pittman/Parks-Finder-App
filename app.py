@@ -19,11 +19,15 @@ app.config['SECRET_KEY'] = '63cf72523975db8854365151adee8c24'
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/Parks'
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/Parks')
 
-db = SQLAlchemy(app)
+Base = automap_base()
 
-seattle = db.Table('seattle', db.metadata, autoload = True, autoload_with = db.engine)
+Base.prepare(engine, reflect=True)
+
+seattle = Base.classes.seattle
+
+session = Session(bind = engine)
 
 #################################################
 # Flask Routes
@@ -38,10 +42,19 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+
+@app.route("/seattle")
+def test_function():
+    results = session.query(seattle.name, seattle.location, seattle.type, seattle.lat, seattle.lng, seattle.distance, seattle.duration).all()
+
+    return render_template("city.html", results = results)
+
+
 @app.route("/city")
 def find_park_():
-    results = db.session.query(seattle).all()
-    
+   
+    results = session.query(seattle.name, seattle.location, seattle.type, seattle.lat, seattle.lng, seattle.distance, seattle.duration).all()
+
     data_list = []
     data_dict = {}
     for name,location,type,lat,lng,distance,duration in results:
@@ -52,9 +65,9 @@ def find_park_():
         data_dict['Lng'] = lng
         data_dict['Distance'] = distance
         data_dict['Duration'] = duration
-        
-        
+    
         data_list.append(data_dict)
+        data_dict = {}
     return jsonify(data_list)
 
 @app.route("/register", methods=['GET', 'POST'])
