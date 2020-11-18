@@ -1,5 +1,4 @@
 
-<!-- Write HTML code here -->
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
@@ -25,7 +24,7 @@
         </div>
       </nav>
       <div class="hero text-center">
-        <h1>UFO Sightings</h1>
+        <h1>US Parks</h1>
         <p>The Truth is Out There</p>
       </div>
       <div class="container">
@@ -40,7 +39,7 @@
                       <ul class="list-group" id="filters">
                         <li class="filter list-group-item">
                           <label for="date">Enter a Date</label>
-                          <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                          <input class="form-control" id="datetime" type="text" placeholder="Utah">
                         </li>
                       </ul>
                     </div>
@@ -53,14 +52,12 @@
           <div class="col-md-10">
             <div class="container"> 
               <h2 class="text-center"><u>Parks</u></h2><br>             
-              <table class="table table-dark table-striped"> 
+              <table class="table table-dark table-striped" id="mytable"> 
                 <thead> 
                   <tr> 
                     <th>Park Name</th> 
                     <th>State</th> 
                     <th>Park Type</th> 
-                    <th>Latitude</th> 
-                    <th>Longitude</th> 
                     <th>Distance</th>
                     <th>Duration</th>
             
@@ -72,8 +69,6 @@
                     <td>{{result.name}}</td>
                     <td>{{result.location}}</td>
                     <td>{{result.type}}</td>
-                    <td>{{result.lat}}</td>
-                    <td>{{result.lng}}</td>
                     <td>{{result.distance}}</td>
                     <td>{{result.duration}}</td>
                   </tr>
