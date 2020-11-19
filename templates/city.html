@@ -1,65 +1,45 @@
-
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <title>TableView - Startup</title> 
-  <meta charset="utf-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
-</head> 
-<body> 
-
-  <body>
-    <div class="wrapper">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" >UFO Sightings
-              <!-- <img class="nav-ufo" src="static/images/ufo.svg"> -->
-            </a>
-          </div>
-        </div>
-      </nav>
+{% extends "layout.html" %}
+{% block content %}
       <div class="hero text-center">
-        <h1>US Parks</h1>
-        <p>The Truth is Out There</p>
+        <h1>Find State and Natinoal Parks in Your Area</h1>
       </div>
       <div class="container">
         <div class="row margin-top-50">
           <div class="col-md-2">
             <aside class="filters">
               <div class="panel panel-default">
-                <div class="panel-heading">Filter Search</div>
                 <div class="panel-body">
                   <form>
                     <div class="form-group">
                       <ul class="list-group" id="filters">
                         <li class="filter list-group-item">
-                          <label for="date">Enter a Date</label>
-                          <input class="form-control" id="datetime" type="text" placeholder="Utah">
+                          <label for="date">Enter a State</label>
+                          <input class="form-control" id="state-filter" type="text" placeholder="Utah">
+                        </li>
+                        <li class="filter list-group-item">
+                          <label for="date">or</label>
+                        <li class="filter list-group-item">
+                          <label for="date">Enter a Distance</label>
+                          <input class="form-control" id="distance-filter" type="text" placeholder="300">
                         </li>
                       </ul>
                     </div>
-                    <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                    <button id="filter-btn" type="button" class="btn btn-default">Filter Parks</button>
                   </form>
                 </div>
               </div>
             </aside>
           </div>
           <div class="col-md-10">
-            <div class="container"> 
-              <h2 class="text-center"><u>Parks</u></h2><br>             
+            <div class="container">              
               <table class="table table-dark table-striped" id="mytable"> 
                 <thead> 
                   <tr> 
                     <th>Park Name</th> 
                     <th>State</th> 
                     <th>Park Type</th> 
-                    <th>Distance</th>
-                    <th>Duration</th>
+                    <th>Distance(miles)</th>
+                    <th>Duration(hours)</th>
             
                   </tr> 
                 </thead> 
@@ -79,12 +59,8 @@
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <span class="bottom">UFO Sightings</span>
-      </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
     <script src="static/js/app.js"></script>
-  
-</body> 
-</html>
+{% endblock content %}
+
